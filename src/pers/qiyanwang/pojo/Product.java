@@ -1,5 +1,10 @@
 package pers.qiyanwang.pojo;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "product_")
 public class Product {
   int id;
   String name;
@@ -10,6 +15,14 @@ public class Product {
   }
   public void setCategory(Category category) {
     this.category = category;
+  }
+  Set<User> users;
+
+  public Set<User> getUsers() {
+    return users;
+  }
+  public void setUsers(Set<User> users) {
+    this.users = users;
   }
   public int getId() {
     return id;
