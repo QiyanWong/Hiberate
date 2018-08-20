@@ -1,12 +1,15 @@
 package pers.qiyanwang.pojo;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import org.hibernate.criterion.Restrictions;
 import pers.qiyanwang.pojo.Product;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TestHibernate {
@@ -17,19 +20,17 @@ public class TestHibernate {
     Session s = sf.openSession();
     s.beginTransaction();
 
-    Set<User> users = new HashSet();
-    for (int i = 0; i < 3; i++) {
-      User u =new User();
-      u.setName("user"+i);
-      users.add(u);
-      s.save(u);
+
+    String name = "iphone";
+
+    Criteria c= s.createCriteria(Product.class);
+    c.add(Restrictions.like("name", "%"+name+"%"));
+    c.setFirstResult(2);
+    c.setMaxResults(5);
+
+    List<Product> ps = c.list();
+    for (Product p : ps) {
     }
-
-    //Product 3 is bought by user 1 2 3
-    Product p1 = (Product) s.get(Product.class, 3);
-
-    p1.setUsers(users);
-    s.save(p1);
 
     s.getTransaction().commit();
     s.close();
