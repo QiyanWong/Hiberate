@@ -8,15 +8,16 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hibernate?characterEncoding=UTF-8</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">bufukua202</property>
+		<property name="connection.password">root</property>
 		<!-- SQL dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="current_session_context_class">thread</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<mapping resource="pers/qiyanwang/pojo/Product.hbm.xml" />
+		<mapping resource="pers/qiyanwang/pojo/Category.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

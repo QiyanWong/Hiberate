@@ -4,18 +4,16 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
     <hibernate-mapping package="pers.qiyanwang.pojo">
-        <class name="Product" table="product_">
+        <class name="Category" table="category">
             <id name="id" column="id">
                 <generator class="native">
                 </generator>
             </id>
             <property name="name" />
-            <property name="price" />
-            <many-to-one name="category" class="Category" column="cid" />
+            <set name="products" lazy="false">
+                <key column="cid" not-null="false" />
+                <one-to-many class="Product" />
+            </set>
         </class>
 
     </hibernate-mapping>
-
-
-
-
